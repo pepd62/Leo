@@ -7,6 +7,7 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
 
 public class LeoTests {
     @BeforeAll
@@ -41,10 +42,13 @@ public class LeoTests {
         $x("//span[.='каталог']/parent::button[contains(@class,'header__nav-item')]").click();
         $x("//a[@href='/ishop/tree_3812270609/']").click();
         $x("//div[contains(@class,'widgets__item')]/a[contains(.,'Кисти')]").click();
-        $x("//input[@id='range-begin']").clear();
+        $x("//input[@id='range-begin']").sendKeys(Keys.CONTROL + "a");
+        $x("//input[@id='range-begin']").sendKeys(Keys.DELETE);
         $x("//input[@id='range-begin']").setValue("500");
-        $x("//input[@id='range-finish']").clear();
+        $x("//input[@id='range-finish']").sendKeys(Keys.CONTROL + "a");
+        $x("//input[@id='range-finish']").sendKeys(Keys.DELETE);
         $x("//input[@id='range-finish']").setValue("1500");
+        $x("//input[@id='range-finish']").sendKeys(Keys.ENTER);
         $x("//button[@class='liketag sfilter remove filtertopremove']").shouldHave(text("Цена 500-1500"));
     }
 }
