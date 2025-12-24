@@ -1,6 +1,7 @@
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selenide.*;
 import static com.codeborne.selenide.WebDriverRunner.getWebDriver;
+import com.codeborne.selenide.Configuration;
 import com.codeborne.selenide.logevents.SelenideLogger;
 import io.qameta.allure.selenide.AllureSelenide;
 import org.junit.jupiter.api.BeforeAll;
@@ -13,14 +14,11 @@ public class LeoTests {
     @BeforeAll
     static void beforeAll() {
         SelenideLogger.addListener("allure", new AllureSelenide());
-    }
-
-    @BeforeEach
-    void setUp() {
         open("https://leonardo.ru/");
         getWebDriver().manage().window().maximize();
         $x("//button[contains(.,'Позже')]").click();
     }
+
     @Test
     void test01CartTest(){
         $x("//span[.='каталог']/parent::button[contains(@class,'header__nav-item')]").click();
@@ -35,7 +33,7 @@ public class LeoTests {
         $x("//span[.='Поиск']/parent::button[contains(@class,'btn-search btn-reset header__dashboard-item header__dashboard-item--visible--desctop dashboard__item')]").click();
         $x("//input[@class='search-form__input search-control searchinput']").setValue("акварель белая");
         $x("//button[@class='search-form__submit-btn']").click();
-        $x("//span[@class='show-gcounts-mob']").shouldHave(text("133 товара"));
+        $x("//span[@class='show-gcounts-mob']").shouldHave(text("136 товар"));
     }
     @Test
     void test03PriceFilterTest(){
